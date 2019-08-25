@@ -10,6 +10,7 @@ import UserProfileLite from "./views/UserProfileLite";
 import AddNewPost from "./views/AddNewPost";
 import Errors from "./views/Errors";
 import ComponentsOverview from "./views/ComponentsOverview";
+import Tables from "./views/Tables";
 import PatientList from "./views/PatientList";
 import PatientForm from "./views/PatientForm";
 import BlogPosts from "./views/BlogPosts";
@@ -48,6 +49,11 @@ export default [
   },
   {
     path: "/tables",
+    layout: DefaultLayout,
+    component: Tables
+  },
+  {
+    path: "/patients",
     layout: DefaultLayout,
     component: PatientList
   },
