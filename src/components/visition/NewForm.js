@@ -112,7 +112,7 @@ class NewForm extends Component {
                     />
                   </Col>
                   <Col md="4" className="form-group">
-                    <label htmlFor="visitDate">วันที่</label>
+                    <label htmlFor="visitDate">วันที่เยี่ยมบ้าน</label>
                     <FormInput 
                       id="visitDate"
                       name="visitDate"
@@ -145,7 +145,7 @@ class NewForm extends Component {
                       type="text"
                       value={this.state.birthdate}
                       onChange={this.handleChange}
-                      placeholder="วันเกิด"
+                      placeholder="Barthel Score"
                     />
                   </Col>
                   <Col md="4" className="form-group">

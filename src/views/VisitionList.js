@@ -46,7 +46,7 @@ class VisitionList extends Component {
           <Col>
             <Card small className="mb-4">
               <CardHeader className="border-bottom">
-              <Col md="6" className="float-left">
+                <Col md="6" className="float-left">
                   <h6 className="m-0">รายละเอียดการเยี่ยมบ้าน</h6>
                 </Col>
                 <Col md="6" className="float-right">

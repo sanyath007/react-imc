@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
 import { Dispatcher, Constants } from '../flux';
 
 import PageTitle from "../components/common/PageTitle";
-import NewForm from '../components/visition/NewForm';
+import NewForm from '../components/registration/NewForm';
 
 class PatientForm extends Component {
   constructor (props) {
@@ -28,7 +28,7 @@ class PatientForm extends Component {
       <Container fluid className="main-content-container px-4">
         {/* Page Header */}
         <Row noGutters className="page-header py-4">
-          <PageTitle sm="4" title="เพิ่มการเยี่ยมบ้าน" subtitle="New Visition" className="text-sm-left" />
+          <PageTitle sm="4" title="ลงทะเบียนผู้ป่วย" subtitle="Register" className="text-sm-left" />
         </Row>
 
         {/* Default Light Table */}
@@ -36,7 +36,7 @@ class PatientForm extends Component {
           <Col>
             <Card small className="mb-4">
               <CardHeader className="border-bottom">
-                <h6 className="m-0">บันทึกการเยี่ยมบ้าน</h6>
+                <h6 className="m-0">แบบฟอร์มลงทะเบียนผู้ป่วย</h6>
               </CardHeader>
               <CardBody className="p-0 pb-3">
                 <NewForm onSubmit={this.addVisition} />

@@ -14,6 +14,7 @@ import Tables from "./views/Tables";
 import PatientList from "./views/PatientList";
 import PatientForm from "./views/PatientForm";
 import RegistrationList from "./views/RegistrationList";
+import RegistrationForm from "./views/RegistrationForm";
 import VisitionList from "./views/VisitionList";
 import VisitionForm from "./views/VisitionForm";
 import BlogPosts from "./views/BlogPosts";
@@ -69,6 +70,11 @@ export default [
     path: "/registrations",
     layout: DefaultLayout,
     component: RegistrationList
+  },
+  {
+    path: "/new-registration",
+    layout: DefaultLayout,
+    component: RegistrationForm
   },
   {
     path: "/visitions",

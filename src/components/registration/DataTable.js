@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const DataTable = ({ registrations }) => (
   <table className="table mb-0">

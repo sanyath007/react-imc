@@ -27,7 +27,7 @@ export default function() {
     //   to: "/tables",
     // },
     {
-      title: "Patient",
+      title: "Patients",
       htmlBefore: '<i class="material-icons">accessible</i>',
       to: "/patients",
     },
