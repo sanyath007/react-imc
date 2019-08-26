@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { Container, Row, Col, Card, CardHeader, CardBody, Button } from "shards-react";
+import React, { Component } from 'react';
+import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
 import { Link } from 'react-router-dom';
 
 import { Store } from "../flux";
 
 import PageTitle from "../components/common/PageTitle";
-import DataTable from '../components/patient/DataTable';
+import DataTable from '../components/visition/DataTable';
 
-class Patients extends Component {
+class VisitionList extends Component {
   constructor (props) {
     super(props);
 
     this.state = {
-      patients: Store.getAllPatients()
+      visitions: Store.getAllVisitions()
     };
 
     this.onChange = this.onChange.bind(this);
@@ -29,18 +29,16 @@ class Patients extends Component {
   onChange () {
     this.setState({
       ...this.state,
-      patients: Store.getAllPatients()
+      visitions: Store.getAllVisitions()
     })
   }
 
   render () {
-    // const borderStyle = { border: '1px solid #000' };
-
     return (
       <Container fluid className="main-content-container px-4">
         {/* Page Header */}
         <Row noGutters className="page-header py-4">
-          <PageTitle sm="4" title="ผู้ป่วย" subtitle="Patients" className="text-sm-left" />
+          <PageTitle sm="4" title="การเยี่ยมบ้าน" subtitle="Home Visition" className="text-sm-left" />
         </Row>
 
         {/* Default Light Table */}
@@ -48,17 +46,17 @@ class Patients extends Component {
           <Col>
             <Card small className="mb-4">
               <CardHeader className="border-bottom">
-                <Col md="6" className="float-left">
-                  <h6 className="m-0">รายละเอียดผู้ป่วย</h6>
+              <Col md="6" className="float-left">
+                  <h6 className="m-0">รายละเอียดการเยี่ยมบ้าน</h6>
                 </Col>
                 <Col md="6" className="float-right">
-                  <Link to="new-patient" className="btn btn-primary m-0 float-right">
-                    เพิ่มผู้ป่วย
+                  <Link to="new-visition" className="btn btn-primary m-0 float-right">
+                    เพิ่มการเยี่ยมบ้าน
                   </Link>
                 </Col>
               </CardHeader>
               <CardBody className="p-0 pb-3">
-                <DataTable patients={ this.state.patients } />
+                <DataTable visitions={ this.state.visitions } />
               </CardBody>
             </Card>
           </Col>
@@ -68,4 +66,4 @@ class Patients extends Component {
   }
 }
 
-export default Patients;
+export default VisitionList;

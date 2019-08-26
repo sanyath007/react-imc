@@ -27,6 +27,21 @@ export default function() {
       to: "/tables",
     },
     {
+      title: "Patient",
+      htmlBefore: '<i class="material-icons">accessible</i>',
+      to: "/patients",
+    },
+    {
+      title: "Registrations",
+      htmlBefore: '<i class="material-icons">assignment_ind</i>',
+      to: "/registrations",
+    },
+    {
+      title: "Visitions",
+      htmlBefore: '<i class="material-icons">assignment</i>',
+      to: "/visitions",
+    },
+    {
       title: "User Profile",
       htmlBefore: '<i class="material-icons">person</i>',
       to: "/user-profile-lite",

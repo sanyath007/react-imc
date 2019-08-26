@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
 import { Dispatcher, Constants } from '../flux';
 
 import PageTitle from "../components/common/PageTitle";
-import NewForm from '../components/patient/NewForm';
+import NewForm from '../components/visition/NewForm';
 
 class PatientForm extends Component {
   constructor (props) {
@@ -11,13 +11,13 @@ class PatientForm extends Component {
 
     this.state = {};
 
-    this.addPatient = this.addPatient.bind(this);
+    this.addVisition = this.addVisition.bind(this);
   }
 
-  addPatient (data) {
+  addVisition (data) {
     console.log(data);
     Dispatcher.dispatch({
-      actionType: Constants.ADD_NEW_PATIENT,
+      actionType: Constants.ADD_NEW_VISITION,
       payload: data
     });
     this.setState({ patient: data });
@@ -28,7 +28,7 @@ class PatientForm extends Component {
       <Container fluid className="main-content-container px-4">
         {/* Page Header */}
         <Row noGutters className="page-header py-4">
-          <PageTitle sm="4" title="เพิ่มผู้ป่วย" subtitle="New Patient" className="text-sm-left" />
+          <PageTitle sm="4" title="เพิ่มการเยี่ยมบ้าน" subtitle="New Visition" className="text-sm-left" />
         </Row>
 
         {/* Default Light Table */}
@@ -36,10 +36,10 @@ class PatientForm extends Component {
           <Col>
             <Card small className="mb-4">
               <CardHeader className="border-bottom">
-                <h6 className="m-0">รายละเอียดผู้ป่วย</h6>
+                <h6 className="m-0">รายละเอียดการเยี่ยมบ้าน</h6>
               </CardHeader>
               <CardBody className="p-0 pb-3">
-                <NewForm onSubmit={this.addPatient} />
+                <NewForm onSubmit={this.addVisition} />
               </CardBody>
             </Card>
           </Col>
