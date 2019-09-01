@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col, Card, CardHeader, CardBody, Button } from "shards-react";
 import { Link } from 'react-router-dom';
 
-import { Store } from "../flux";
+import { Store, PatientActions } from "../flux";
 
 import PageTitle from "../components/common/PageTitle";
 import DataTable from '../components/patient/DataTable';
@@ -12,7 +12,20 @@ class Patients extends Component {
     super(props);
 
     this.state = {
-      patients: Store.getAllPatients()
+      patients: Store.getAllPatients(),
+      pager: {
+        current_page: 1,
+        first_page_url: 'http://accpayable.com/api/approves/0/0/0/1?page=1',
+        from: 1,
+        last_page: 77,
+        last_page_url: 'http://accpayable.com/api/approves/0/0/0/1?page=77',
+        next_page_url: 'http://accpayable.com/api/approves/0/0/0/1?page=2',
+        path: 'http://accpayable.com/api/approves/0/0/0/1',
+        per_page: 10,
+        prev_page_url: '',
+        to: 10,
+        total: 769
+      }
     };
 
     this.onChange = this.onChange.bind(this);
@@ -20,6 +33,10 @@ class Patients extends Component {
 
   componentWillMount () {
     Store.addChangeListener(this.onChange);
+  }
+
+  componentDidMount () {
+    PatientActions.getAllPatients();
   }
 
   componentWillUnmount () {
@@ -57,8 +74,8 @@ class Patients extends Component {
                   </Link>
                 </Col>
               </CardHeader>
-              <CardBody className="p-0 pb-3">
-                <DataTable patients={ this.state.patients } />
+              <CardBody className="p-2 pb-3">                
+                <DataTable patients={ this.state.patients } pager={ pager } />
               </CardBody>
             </Card>
           </Col>

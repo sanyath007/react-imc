@@ -7,28 +7,7 @@ import getSidebarNavItems from "../data/sidebar-nav-items";
 let _store = {
   menuVisible: false,
   navItems: getSidebarNavItems(),
-  patients: [
-    { 
-      id: 1,
-      pid: '00001',
-      hn: '0001992',
-      cid: '1300200009261',
-      prefix: 'Mr.',
-      fname: 'Sanya',
-      lname: 'Thammawong',
-      birthdate: '17/05/1984',
-      age: 35,
-      sex: 1,
-      tel: '0807390254',
-      address: '777/529',
-      road: '-',
-      moo: '8',
-      tambon: '300101',
-      amphur: '3001',
-      changwat: '30',
-      zipcode: '30000'
-    }
-  ],
+  patients: [],
   registrations: [
     {
       id: 1,
@@ -47,7 +26,7 @@ let _store = {
   visitions: [
     {
       id: 1,
-      cid: '1300200009261',
+      pid: '1300200009261',
       name: 'Sanya Thammawong',
       age: 35,
       visitCount: 1,
@@ -81,6 +60,13 @@ class Store extends EventEmitter {
       case Constants.ADD_NEW_PATIENT:
         this.addNewPatient(payload);
         break;
+      case Constants.FETCH_PATIENTS:
+        _store.patients = payload;
+        this.emit(Constants.CHANGE);
+        break;
+      case Constants.FETCH_PATIENT:
+          this.getPatientById(payload);
+          break;
       default:
     }
   }
@@ -105,6 +91,10 @@ class Store extends EventEmitter {
 
   getAllPatients() {
     return _store.patients;
+  }
+  
+  getPatientById(pid) {
+    return _store.patients[pid];
   }
 
   getAllRegistrations() {

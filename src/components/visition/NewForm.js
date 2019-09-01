@@ -199,20 +199,24 @@ class NewForm extends Component {
                     <label htmlFor="zipcode">รูปถ่าย/ไฟล์ </label>
                     <Dropzone onDrop={this.handleDrop} multiple>
                       {({getRootProps, getInputProps, isDragActive}) => (
-                        <div {...getRootProps()}>
+                        <div {...getRootProps()} style={{ border: '1px solid #000', minHeight: '50px', padding: '10px' }}>
                           <input {...getInputProps()} />
                           {isDragActive ? `Drop it like it's Hot!` : 'Click me or drag a file to upload!'}
+
+                          <Row mt-5>
+                            { this.state.attachments.length > 0 && this.state.attachments.map(file => (
+                              <Col md="3" key={file.name}>
+                                <img src={URL.createObjectURL(file)} style={ thumbnailStyle } alt=""/> {file.name}
+                              </Col>
+                            ))}
+                          </Row>
                         </div>
                       )}
                     </Dropzone>
 
-                    <Row>
-                      { this.state.attachments.length > 0 && this.state.attachments.map(file => (
-                        <Col md="3" key={file.name}>
-                          <img src={URL.createObjectURL(file)} style={ thumbnailStyle } alt=""/> {file.name}
-                        </Col>
-                      ))}
-                    </Row>
+                    
+                      
+                    
                   </Col>
                 </Row>
                 
