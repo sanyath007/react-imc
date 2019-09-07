@@ -39,7 +39,10 @@ let _store = {
       visitStatus: 0,
       attachments: 1,
     }
-  ]
+  ],
+  changwats: [],
+  amphurs: [],
+  tambons: [],
 };
 
 class Store extends EventEmitter {
@@ -67,6 +70,18 @@ class Store extends EventEmitter {
       case Constants.FETCH_PATIENT:
           this.getPatientById(payload);
           break;
+      case Constants.FETCH_CHANGWATS:
+          _store.changwats = payload;
+          this.emit(Constants.CHANGE);
+          break;
+      case Constants.FETCH_AMPHURS:
+          _store.amphurs = payload;
+          this.emit(Constants.CHANGE);
+          break;
+      case Constants.FETCH_TAMBONS:
+          _store.tambons = payload;
+          this.emit(Constants.CHANGE);
+          break;
       default:
     }
   }
@@ -93,8 +108,32 @@ class Store extends EventEmitter {
     return _store.patients;
   }
   
-  getPatientById(pid) {
+  getPatient(pid) {
     return _store.patients[pid];
+  }
+
+  getChangwats() {
+    console.log(_store.changwats);
+    return _store.changwats;
+  }
+
+  getAmphurs() {
+    console.log(_store.amphurs);
+    return _store.amphurs;
+  }
+
+  getAmphur(changwat) {
+    console.log(_store.amphurs.filter(amp => amp.chw_id === changwat));
+    return _store.amphurs.filter(amp => amp.chw_id === changwat);
+  }
+  
+  getTambons() {
+    return _store.tambons;
+  }
+  
+  getTambon(amphur) {
+    console.log(_store.tambons.filter(tam => tam.amp_id === amphur));
+    return _store.tambons.filter(tam => tam.amp_id === amphur);
   }
 
   getAllRegistrations() {

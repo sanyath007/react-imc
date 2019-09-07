@@ -8,7 +8,6 @@ import {
   Form,
   FormInput,
   FormGroup,
-  FormCheckbox,
   FormSelect,
   Button
 } from "shards-react";
@@ -18,24 +17,24 @@ class NewForm extends Component {
     super(props);
 
     this.initialState = {
-      id: '',
       pid: '',
       hn: '',
       cid: '',
-      prefix: '',
+      pname: '',
       fname: '',
       lname: '',
       birthdate: '',
-      age: 0,
+      age_y: 0,
       sex: 1,
       tel: '',
       address: '',
-      road: '',
       moo: '',
+      road: '',
       tambon: '',
       amphur: '',
       changwat: '',
-      zipcode: ''
+      zipcode: '',
+      latlong: ''
     }
 
     this.state = this.initialState;
@@ -47,14 +46,24 @@ class NewForm extends Component {
   handleChange (event) {
     const name = event.target.name;
     const value = event.target.value;
-
+    
     this.setState({
       [name]: value
     });
+    
+    if (name === 'changwat') {
+      console.log(name + '=' + value);
+      this.props.onSelectedChangwat(value)
+    }
+    
+    if (name === 'amphur') {
+      console.log(name + '=' + value);
+      this.props.onSelectedAmphur(value)
+    }
 
     console.log(this.state);
   }
-
+  
   handleSubmit (event) {
     event.preventDefault();
 
@@ -63,6 +72,8 @@ class NewForm extends Component {
   }
 
   render () {
+    let { changwats, amphurs, tambons } = this.props;
+
     return (
       <ListGroup flush>
         <ListGroupItem className="p-3">
@@ -107,11 +118,11 @@ class NewForm extends Component {
 
                 <Row form>
                   <Col md="2" className="form-group">
-                    <label htmlFor="prefix">คำนำหน้า</label>
+                    <label htmlFor="pname">คำนำหน้า</label>
                     <FormSelect
-                      id="prefix"
-                      name="prefix"
-                      value={this.state.prefix}
+                      id="pname"
+                      name="pname"
+                      value={this.state.pname}
                       onChange={this.handleChange}
                     >
                       <option value="">Choose...</option>
@@ -178,7 +189,8 @@ class NewForm extends Component {
                       onChange={this.handleChange}
                     >
                       <option>Choose...</option>
-                      <option>...</option>
+                      <option value="1">ชาย</option>
+                      <option value="2">หญิง</option>
                     </FormSelect>
                   </Col>
                 </Row>
@@ -230,7 +242,9 @@ class NewForm extends Component {
                       onChange={this.handleChange}
                     >
                       <option>Choose...</option>
-                      <option>...</option>
+                      {changwats && changwats.map(chw => (
+                        <option key={chw.chw_id} value={chw.chw_id}>{chw.changwat}</option>
+                      ))}
                     </FormSelect>
                   </Col>
                   <Col md="4" className="form-group">
@@ -242,7 +256,9 @@ class NewForm extends Component {
                       onChange={this.handleChange}
                     >
                       <option>Choose...</option>
-                      <option>...</option>
+                      {this.state.changwat && amphurs && amphurs.map(amp => (
+                        <option key={amp.id} value={amp.id}>{amp.amphur}</option>
+                      ))}
                     </FormSelect>
                   </Col>
                   <Col md="4" className="form-group">
@@ -254,13 +270,15 @@ class NewForm extends Component {
                       onChange={this.handleChange}
                     >
                       <option>Choose...</option>
-                      <option>...</option>
+                      {this.state.amphur && tambons && tambons.map(tam => (
+                        <option key={tam.id} value={tam.id}>{tam.tambon}</option>
+                      ))}
                     </FormSelect>
                   </Col>
                 </Row>
 
                 <Row form>
-                  <Col md="3" className="form-group">
+                  <Col md="2" className="form-group">
                     <label htmlFor="zipcode">ไปรษณีย์</label>
                     <FormInput
                       id="zipcode"
@@ -271,7 +289,20 @@ class NewForm extends Component {
                       placeholder="รหัสไปรษณีย์"
                     />
                   </Col>
-                  <Col md="9" className="form-group">
+                  <Col md="5" className="form-group">
+                    <label htmlFor="latlong">ละติจูด, ลองติจูด</label>
+                    <FormInput
+                      id="latlong"
+                      name="latlong"
+                      type="text"
+                      value={this.state.latlong}
+                      onChange={this.handleChange}
+                      data-toggle="modal" 
+                      data-target="#exampleModal"
+                      placeholder="ละติจูด, ลองติจูด"
+                    />
+                  </Col>
+                  <Col md="5" className="form-group">
                     <label htmlFor="tel">โทรศัพท์</label>
                     <FormInput
                       id="tel"
@@ -288,6 +319,7 @@ class NewForm extends Component {
               </Form>
             </Col>
           </Row>
+
         </ListGroupItem>
       </ListGroup>
     );

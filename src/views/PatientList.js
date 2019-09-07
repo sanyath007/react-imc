@@ -75,7 +75,7 @@ class Patients extends Component {
                 </Col>
               </CardHeader>
               <CardBody className="p-2 pb-3">                
-                <DataTable patients={ this.state.patients } pager={ pager } />
+                <DataTable patients={ this.state.patients } pager={ this.state.pager } />
               </CardBody>
             </Card>
           </Col>

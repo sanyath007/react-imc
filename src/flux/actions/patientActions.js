@@ -18,8 +18,7 @@ class PatientActions {
       });
   }
 
-  getAllPatients () {
-    
+  getAllPatients () {    
     axios.get('http://localhost/laravel-mnrhweb/public/imc/patients')
     .then(res => {
       console.log(res);
@@ -38,6 +37,48 @@ class PatientActions {
       actionType: Constants.FETCH_PATIENT,
       payload: pid
     });
+  }
+
+  getChangwats () {    
+    axios.get('http://localhost/laravel-mnrhweb/public/imc/changwats')
+    .then(res => {
+      console.log(res);
+      Dispatcher.dispatch({
+        actionType: Constants.FETCH_CHANGWATS,
+        payload: res.data.changwats
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+  getAmphurs () {    
+    axios.get('http://localhost/laravel-mnrhweb/public/imc/amphurs')
+    .then(res => {
+      console.log(res);
+      Dispatcher.dispatch({
+        actionType: Constants.FETCH_AMPHURS,
+        payload: res.data.amphurs
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+  getTambons () {    
+    axios.get('http://localhost/laravel-mnrhweb/public/imc/tambons')
+    .then(res => {
+      console.log(res);
+      Dispatcher.dispatch({
+        actionType: Constants.FETCH_TAMBONS,
+        payload: res.data.tambons
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 }
 

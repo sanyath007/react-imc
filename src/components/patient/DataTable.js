@@ -25,7 +25,7 @@ const DataTable = ({ patients, pager }) => {
               <td className="text-center">{patient.pid}</td>
               <td className="text-center">{patient.hn}</td>
               <td>{patient.fname + ' ' + patient.lname}</td>
-              <td className="text-center">{patient.ageY}</td>
+              <td className="text-center">{patient.age_y}</td>
               <td className="text-center">{patient.cid}</td>
               <td className="text-center">{patient.tel}</td>
               <td>{patient.address}</td>
