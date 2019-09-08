@@ -60,8 +60,6 @@ class NewForm extends Component {
       console.log(name + '=' + value);
       this.props.onSelectedAmphur(value)
     }
-
-    console.log(this.state);
   }
   
   handleSubmit (event) {
@@ -126,11 +124,11 @@ class NewForm extends Component {
                       onChange={this.handleChange}
                     >
                       <option value="">Choose...</option>
-                      <option value="1">ด.ช.</option>
-                      <option value="2">ด.ญ.</option>
-                      <option value="3">นาย</option>
-                      <option value="4">นาง</option>
-                      <option value="5">นางสาว</option>
+                      <option value="ด.ช.">ด.ช.</option>
+                      <option value="ด.ญ.">ด.ญ.</option>
+                      <option value="นาย">นาย</option>
+                      <option value="นาง">นาง</option>
+                      <option value="นางสาว">นางสาว</option>
                     </FormSelect>
                   </Col>
                   <Col md="5" className="form-group">

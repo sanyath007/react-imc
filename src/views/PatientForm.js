@@ -5,7 +5,7 @@ import { Store, PatientActions } from "../flux";
 
 import PageTitle from "../components/common/PageTitle";
 import NewForm from '../components/patient/NewForm';
-import BasicModal from '../components/modal/BasicModal';
+import MapModal from '../components/modal/MapModal';
 
 class PatientForm extends Component {
   constructor (props) {
@@ -97,7 +97,7 @@ class PatientForm extends Component {
           </Col>
         </Row>
 
-        <BasicModal show={true} />
+        <MapModal show={true} />
         
       </Container>
     )

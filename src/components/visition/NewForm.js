@@ -203,7 +203,7 @@ class NewForm extends Component {
                           <input {...getInputProps()} />
                           {isDragActive ? `Drop it like it's Hot!` : 'Click me or drag a file to upload!'}
 
-                          <Row mt-5>
+                          <Row form>
                             { this.state.attachments.length > 0 && this.state.attachments.map(file => (
                               <Col md="3" key={file.name}>
                                 <img src={URL.createObjectURL(file)} style={ thumbnailStyle } alt=""/> {file.name}

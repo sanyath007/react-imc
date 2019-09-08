@@ -4,6 +4,7 @@ import { Dispatcher, Constants } from '../flux';
 
 import PageTitle from "../components/common/PageTitle";
 import NewForm from '../components/registration/NewForm';
+import BasicModal from '../components/modal/BasicModal';
 
 class PatientForm extends Component {
   constructor (props) {
@@ -11,16 +12,16 @@ class PatientForm extends Component {
 
     this.state = {};
 
-    this.addVisition = this.addVisition.bind(this);
+    this.addRegistration = this.addRegistration.bind(this);
   }
 
-  addVisition (data) {
+  addRegistration (data) {
     console.log(data);
     Dispatcher.dispatch({
-      actionType: Constants.ADD_NEW_VISITION,
+      actionType: Constants.ADD_NEW_REGISTRATION,
       payload: data
     });
-    this.setState({ patient: data });
+    this.setState({ data });
   }
 
   render () {
@@ -39,11 +40,14 @@ class PatientForm extends Component {
                 <h6 className="m-0">แบบฟอร์มลงทะเบียนผู้ป่วย</h6>
               </CardHeader>
               <CardBody className="p-0 pb-3">
-                <NewForm onSubmit={this.addVisition} />
+                <NewForm onSubmit={this.addRegistration} />
               </CardBody>
             </Card>
           </Col>
         </Row>
+
+        <BasicModal show={true} title={'เลือกผู้ป่วย'} content={'Content are here !!'} />
+
       </Container>
     )
   }
