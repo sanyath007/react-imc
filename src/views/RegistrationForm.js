@@ -5,14 +5,47 @@ import { Dispatcher, Constants } from '../flux';
 import PageTitle from "../components/common/PageTitle";
 import NewForm from '../components/registration/NewForm';
 import BasicModal from '../components/modal/BasicModal';
+import Icd10Modal from './Icd10Modal';
+
+import { Store, PatientActions } from '../flux';
+import store from "../flux/store";
 
 class PatientForm extends Component {
   constructor (props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      hosps: Store.getHosps(),
+      pcus: Store.getPcus(),
+      icds: Store.getIcds(),
+    };
 
+    this.onChange = this.onChange.bind(this);
     this.addRegistration = this.addRegistration.bind(this);
+    this.onSubmitIcdSearch = this.onSubmitIcdSearch.bind(this);
+  }
+
+  componentWillMount () {
+    Store.addChangeListener(this.onChange);
+  }
+
+  componentDidMount () {
+    PatientActions.getHosps();
+    PatientActions.getPcus();
+    PatientActions.getIcds();
+  }
+
+  componentWillUnmount () {
+    Store.removeChangeListener(this.onChange);
+  }
+
+  onChange () {
+    this.setState({
+      ...this.state,
+      hosps: Store.getHosps(),
+      pcus: Store.getPcus(),
+      icds: Store.getIcds(),
+    })
   }
 
   addRegistration (data) {
@@ -21,7 +54,10 @@ class PatientForm extends Component {
       actionType: Constants.ADD_NEW_REGISTRATION,
       payload: data
     });
-    this.setState({ data });
+  }
+
+  onSubmitIcdSearch (keyword) {
+    this.setState({ icds: Store.getIcds(keyword) });
   }
 
   render () {
@@ -40,13 +76,19 @@ class PatientForm extends Component {
                 <h6 className="m-0">แบบฟอร์มลงทะเบียนผู้ป่วย</h6>
               </CardHeader>
               <CardBody className="p-0 pb-3">
-                <NewForm onSubmit={this.addRegistration} />
+                <NewForm 
+                  hosps={this.state.hosps}
+                  pcus={this.state.pcus}
+                  onSubmit={this.addRegistration} 
+                />
               </CardBody>
             </Card>
           </Col>
         </Row>
 
-        <BasicModal show={true} title={'เลือกผู้ป่วย'} content={'Content are here !!'} />
+        <BasicModal props={{ id: 'patients', title: 'เลือกผู้ป่วย', content: 'Content are here !!' }} />
+
+        <Icd10Modal icds={this.state.icds} submitIcdSearch={this.onSubmitIcdSearch} />
 
       </Container>
     )

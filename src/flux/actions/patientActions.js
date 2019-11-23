@@ -9,7 +9,7 @@ class PatientActions {
       payload: patient
     });
 
-    axios.post('http://localhost/laravel-mnrhweb/public/imc/patient', patient)
+    axios.post('http://mnrhweb.com/api/imc/patient', patient)
       .then(res => {
         console.log(res);
       })
@@ -19,7 +19,7 @@ class PatientActions {
   }
 
   getAllPatients () {    
-    axios.get('http://localhost/laravel-mnrhweb/public/imc/patients')
+    axios.get('http://mnrhweb.com/api/imc/patients')
     .then(res => {
       console.log(res);
       Dispatcher.dispatch({
@@ -40,7 +40,7 @@ class PatientActions {
   }
 
   getChangwats () {    
-    axios.get('http://localhost/laravel-mnrhweb/public/imc/changwats')
+    axios.get('http://mnrhweb.com/api/imc/changwats')
     .then(res => {
       console.log(res);
       Dispatcher.dispatch({
@@ -54,7 +54,7 @@ class PatientActions {
   }
 
   getAmphurs () {    
-    axios.get('http://localhost/laravel-mnrhweb/public/imc/amphurs')
+    axios.get('http://mnrhweb.com/api/imc/amphurs')
     .then(res => {
       console.log(res);
       Dispatcher.dispatch({
@@ -68,12 +68,54 @@ class PatientActions {
   }
 
   getTambons () {    
-    axios.get('http://localhost/laravel-mnrhweb/public/imc/tambons')
+    axios.get('http://mnrhweb.com/api/imc/tambons')
     .then(res => {
       console.log(res);
       Dispatcher.dispatch({
         actionType: Constants.FETCH_TAMBONS,
         payload: res.data.tambons
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+  getHosps () {    
+    axios.get('http://mnrhweb.com/api/imc/hosps')
+    .then(res => {
+      console.log(res);
+      Dispatcher.dispatch({
+        actionType: Constants.FETCH_HOSPS,
+        payload: res.data.hosps
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+  getPcus () {    
+    axios.get('http://mnrhweb.com/api/imc/pcus')
+    .then(res => {
+      console.log(res);
+      Dispatcher.dispatch({
+        actionType: Constants.FETCH_PCUS,
+        payload: res.data.pcus
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+  getIcds () {    
+    axios.get('http://mnrhweb.com/api/imc/icds')
+    .then(res => {
+      console.log(res);
+      Dispatcher.dispatch({
+        actionType: Constants.FETCH_ICDS,
+        payload: res.data.icds
       });
     })
     .catch(err => {

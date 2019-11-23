@@ -2,9 +2,9 @@ import React from 'react';
 
 import MapLocation from '../form/MapLocation';
 
-const BasicModal = (props) => {
+const BasicModal = ({ props }) => {
   return (
-    <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div className="modal fade" id={props.id} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div className="modal-dialog modal-lg" role="document">
         <div className="modal-content">
           <div className="modal-header">
@@ -13,7 +13,7 @@ const BasicModal = (props) => {
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div className="modal-body">
+          <div className="modal-body" style={{ padding: '10px' }}>
             {props.content}
           </div>
           <div className="modal-footer">

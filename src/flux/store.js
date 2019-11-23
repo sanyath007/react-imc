@@ -43,6 +43,9 @@ let _store = {
   changwats: [],
   amphurs: [],
   tambons: [],
+  hosps: [],
+  pcus: [],
+  icds: [],
 };
 
 class Store extends EventEmitter {
@@ -80,6 +83,18 @@ class Store extends EventEmitter {
           break;
       case Constants.FETCH_TAMBONS:
           _store.tambons = payload;
+          this.emit(Constants.CHANGE);
+          break;
+      case Constants.FETCH_HOSPS:
+          _store.hosps = payload;
+          this.emit(Constants.CHANGE);
+          break;
+      case Constants.FETCH_PCUS:
+          _store.pcus = payload;
+          this.emit(Constants.CHANGE);
+          break;
+      case Constants.FETCH_ICDS:
+          _store.icds = payload;
           this.emit(Constants.CHANGE);
           break;
       default:
@@ -134,6 +149,24 @@ class Store extends EventEmitter {
   getTambon(amphur) {
     console.log(_store.tambons.filter(tam => tam.amp_id === amphur));
     return _store.tambons.filter(tam => tam.amp_id === amphur);
+  }
+
+  getHosps() {
+    return _store.hosps;
+  }
+
+  getPcus() {
+    return _store.pcus;
+  }
+  
+  getIcds() {
+    return _store.icds;
+  }
+  
+  getIcds(keyword) {
+    console.log(keyword);
+    if (keyword === '') return _store.icds;
+    return _store.icds.filter(icd => icd.code.indexOf(keyword));
   }
 
   getAllRegistrations() {

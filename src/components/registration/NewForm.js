@@ -19,7 +19,7 @@ setDefaultLocale('th');
 
 const initialState = {
   id: '',
-  pid: '',
+  patient: '',
   dx: 'I60',
   dxDate: new Date(),
   dchHosp: '',
@@ -51,7 +51,7 @@ class NewForm extends Component {
   handleDateChange (name, date) {
     this.setState((state) => {
       return {
-        // ...state,
+        ...state,
         [name]: date
       };
     })
@@ -61,8 +61,8 @@ class NewForm extends Component {
     event.preventDefault();
     
     console.log(this.state);
-    this.props.onSubmit(this.state);
-    this.setState({ ...initialState });
+    // this.props.onSubmit(this.state);
+    // this.setState({ ...initialState });
   }
 
   render () {
@@ -90,7 +90,7 @@ class NewForm extends Component {
                           type="button" 
                           id="button-addon2" 
                           data-toggle="modal" 
-                          data-target="#exampleModal"
+                          data-target="#patients"
                         >
                           <i className="material-icons">search</i>
                         </button>
@@ -116,7 +116,7 @@ class NewForm extends Component {
                           type="button" 
                           id="button-addon2" 
                           data-toggle="modal" 
-                          data-target="#exampleModal"
+                          data-target="#icd10s"
                         >
                           <i className="material-icons">search</i>
                         </button>
@@ -157,7 +157,9 @@ class NewForm extends Component {
                       onChange={this.handleChange}
                     >
                       <option>Choose...</option>
-                      <option>...</option>
+                      {this.props.hosps && this.props.hosps.map((h) => (
+                        <option key={h.hospcode}>{h.name}</option>
+                      ))}
                     </FormSelect>
                   </Col>
                   <Col md="3" className="form-group">
@@ -192,7 +194,9 @@ class NewForm extends Component {
                       onChange={this.handleChange}
                     >
                       <option>Choose...</option>
-                      <option>...</option>
+                      {this.props.pcus && this.props.pcus.map((h) => (
+                        <option key={h.hospcode}>{h.name}</option>
+                      ))}
                     </FormSelect>
                   </Col>
                   <Col md="3" className="form-group">
